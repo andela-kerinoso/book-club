@@ -9,8 +9,8 @@ package kola.clubMembership.main;
 
 import java.util.Date;
 
-public class Member {
-
+public class Member
+{
     private String fullName, email, phoneNumber, dateOfBirth;
     private char gender;
     private Date dateOfRegistration;

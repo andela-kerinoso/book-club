@@ -19,6 +19,18 @@ public class Staff extends Member
         this(null, null, null, null, null, null, null, null);
     }
     
+    /**
+     * Handle initialization of some properties at instantiation
+     * 
+     * @param fullName
+     * @param email
+     * @param phoneNumber
+     * @param dateOfBirth
+     * @param gender
+     * @param staffNum
+     * @param assignedStudentNum
+     * @param netPay 
+     */
     public Staff(String fullName, String email, String phoneNumber, String dateOfBirth, Character gender, Integer staffNum, Integer assignedStudentNum, Double netPay)
     {
         super(fullName, email, phoneNumber, dateOfBirth, gender);
@@ -43,26 +55,41 @@ public class Staff extends Member
         this.assignedStudentNum = assignedStudentNum;
     }
     
+    /**
+     * @return assignedStudentNum
+     */
     public int getAssignedStudentNum()
     {
         return assignedStudentNum;
     }
     
+    /**
+     * @param staffNum 
+     */
     public void setStaffNum(int staffNum)
     {
         this.staffNum = staffNum;
     }
     
+    /**
+     * @return staffNum
+     */
     public int getStaffNum()
     {
         return staffNum;
     }
     
+    /**
+     * @param netPay 
+     */
     public void setNetPay(double netPay)
     {
         this.netPay = netPay;
     }
     
+    /**
+     * @return netPay
+     */
     public double getNetPay()
     {
         return netPay;

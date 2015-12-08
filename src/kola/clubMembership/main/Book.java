@@ -4,9 +4,11 @@
  * @author kola <kola.erinoso@gmail.com>
  * @date 24/11/2015
  */
+
 package kola.clubMembership.main;
 
-public class Book {
+public class Book
+{
     private String bookName, author, isbnNumber;
     private int numberOfCopies;
     

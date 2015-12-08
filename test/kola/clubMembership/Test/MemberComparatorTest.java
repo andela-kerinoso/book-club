@@ -4,6 +4,7 @@
  * @author kola <kola.erinoso@gmail.com>
  * @date 07/12/2015
  */
+
 package kola.clubMembership.Test;
 
 import org.junit.Test;
