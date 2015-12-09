@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 import kola.clubMembership.main.Member;
 import kola.clubMembership.members.Staff;
 import kola.clubMembership.members.Student;
-import kola.clubMembership.MemberComparator;
+import kola.clubMembership.members.MemberComparator;
 
 public class MemberComparatorTest {
     /**

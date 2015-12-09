@@ -2,11 +2,10 @@
  *
  * @author kola
  */
-package kola.clubMembership;
+package kola.clubMembership.members;
 
 import java.util.Comparator;
 import kola.clubMembership.main.Member;
-import kola.clubMembership.members.Staff;
 
 public class MemberComparator implements Comparator<Member>{
     @Override

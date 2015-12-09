@@ -15,6 +15,9 @@ public class Member
     private char gender;
     private Date dateOfRegistration;
     
+    public Member()
+    {}
+    
     /**
      * Handle initialization of some properties at instantiation
      * 

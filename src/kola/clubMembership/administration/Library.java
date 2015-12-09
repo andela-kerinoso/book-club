@@ -5,7 +5,7 @@
  * @date 05/12/2015
  */
 
-package kola.clubMembership;
+package kola.clubMembership.administration;
 
 import java.util.List;
 import java.util.Arrays;
@@ -64,7 +64,7 @@ public class Library
         String bookName = book.getBookName();
         int availableCopiesOfBook = getAvailableCopiesOfBook(bookName);
         
-        if (availableCopiesOfBook >= 0) {
+        if (availableCopiesOfBook > 0) {
             int newNumberOfCopies = availableCopiesOfBook - book.getNumberOfCopies();
             
             if (newNumberOfCopies >= 0) {
@@ -79,8 +79,10 @@ public class Library
      * @param borrowers
      * @param book
      * @return String | NULL
+     * @throws BookOutOfStockException
+     * @throws BookNotAvailableException 
      */
-    public String lendBook(PriorityQueue<Member> borrowers, Book book)
+    public String lendBook(PriorityQueue<Member> borrowers, Book book) throws BookOutOfStockException, BookNotAvailableException
     {
         int availableCopiesOfBook;
         
@@ -88,22 +90,10 @@ public class Library
             availableCopiesOfBook = getAvailableCopiesOfBook(book.getBookName());
         } else if (getAvailableCopiesOfBook(book.getBookName()) == -1) {
             borrowers.clear();
-            
-            try
-            {
-                throw new BookOutOfStockException();
-            } catch (BookOutOfStockException e) {
-                return e.getMessage();
-            }
+            throw new BookOutOfStockException();
         } else {
             borrowers.clear();
-            
-            try
-            {
-                throw new BookNotAvailableException();
-            } catch (BookNotAvailableException e) {
-                return e.getMessage();
-            }
+            throw new BookNotAvailableException();
         }
         
         if (borrowers.size() > availableCopiesOfBook)
@@ -144,9 +134,10 @@ public class Library
             
         while (counter < copiesToBeIssued) {
             Book bookToBeIssued = new Book(book.getBookName(), book.getAuthor(), book.getIsbnNumber(), 1);
+            Member nextBorrower = borrowers.peek();
             
-            if (borrowersList.putIfAbsent(borrowers.peek(), new ArrayList<>(Arrays.asList(bookToBeIssued))) != null) {
-                borrowersList.get(borrowers.peek()).add(bookToBeIssued);
+            if (borrowersList.putIfAbsent(nextBorrower, new ArrayList<>(Arrays.asList(bookToBeIssued))) != null) {
+                borrowersList.get(nextBorrower).add(bookToBeIssued);
             }
                 
             removeBook(bookToBeIssued);

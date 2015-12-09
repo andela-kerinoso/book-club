@@ -13,9 +13,7 @@ public class Book
     private int numberOfCopies;
     
     public Book()
-    {
-        this(null, null, null, null);
-    }
+    {}
     
     @Override
     public String toString()

@@ -14,9 +14,7 @@ public class Student extends Member
     private int studentNum, studentClass;
     
     public Student()
-    {
-        this(null, null, null, null, null, null, null);
-    }
+    {}
     
     /**
      * Handle initialization of some properties at instantiation

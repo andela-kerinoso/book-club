@@ -14,12 +14,15 @@ import org.junit.Before;
 import java.util.Arrays;
 import java.util.ArrayList;
 import org.junit.AfterClass;
-import kola.clubMembership.*;
 import org.junit.BeforeClass;
 import java.util.PriorityQueue;
 import static org.junit.Assert.*;
 import kola.clubMembership.main.*;
 import kola.clubMembership.members.*;
+import static org.hamcrest.CoreMatchers.is;
+import kola.clubMembership.administration.*;
+import kola.clubMembership.exception.BookOutOfStockException;
+import kola.clubMembership.exception.BookNotAvailableException;
 
 /**
  *
@@ -120,9 +123,12 @@ public class LibraryTest {
 
     /**
      * Test of lendBook method, of class Library.
+     * 
+     * @throws BookOutOfStockException
+     * @throws BookNotAvailableException 
      */
     @Test
-    public void testLendBook()
+    public void testLendBook() throws BookOutOfStockException, BookNotAvailableException
     {
         assertTrue(clubLibrary.getBorrowersList().isEmpty());
         
@@ -146,13 +152,23 @@ public class LibraryTest {
         
         borrowers = Borrow.queueForBook(members);
         
-        assertEquals("All have been lent out. Check back later!", clubLibrary.lendBook(borrowers, book1));
+        try {
+            clubLibrary.lendBook(borrowers, book1);
+            fail("Expected an BookNotAvailableException to be thrown");
+        } catch (BookNotAvailableException ex) {
+            assertThat(ex.getMessage(), is("All have been lent out. Check back later!"));
+        }
         
         
         borrowers = Borrow.queueForBook(members);
         book3 = new Book("Man in the Desert", "Lorenzo Abati", "9780385086169", 5);
         
-        assertEquals("Book is out of stock. Check back next semester!", clubLibrary.lendBook(borrowers, book3));
+        try {
+            clubLibrary.lendBook(borrowers, book3);
+            fail("Expected an BookOutOfStockException to be thrown");
+        } catch (BookOutOfStockException ex) {
+            assertThat(ex.getMessage(), is("Book is out of stock. Check back next semester!"));
+        }
     }
     
     /**

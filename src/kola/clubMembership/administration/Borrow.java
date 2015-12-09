@@ -5,12 +5,13 @@
  * @date 25/11/2015
  */
 
-package kola.clubMembership;
+package kola.clubMembership.administration;
 
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import kola.clubMembership.main.Member;
+import kola.clubMembership.members.MemberComparator;
 
 public class Borrow {
     /**

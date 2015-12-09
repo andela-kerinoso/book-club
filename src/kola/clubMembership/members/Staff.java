@@ -15,9 +15,7 @@ public class Staff extends Member
     private double netPay;
     
     public Staff()
-    {
-        this(null, null, null, null, null, null, null, null);
-    }
+    {}
     
     /**
      * Handle initialization of some properties at instantiation

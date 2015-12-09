@@ -9,11 +9,11 @@ package kola.clubMembership.Test;
 
 import org.junit.Test;
 import java.util.PriorityQueue;
-import kola.clubMembership.Borrow;
 import kola.clubMembership.members.*;
 import kola.clubMembership.main.Member;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import kola.clubMembership.administration.Borrow;
 
 public class BorrowTest {
     /**
