@@ -94,10 +94,30 @@ public class Book
     }
     
     /**
+     * Handle incrementing number of copies of a book
+     * 
+     * @param newNumOfCopies 
+     */
+    public void incrementNumberOfCopies(int newNumOfCopies)
+    {
+        this.numberOfCopies += newNumOfCopies;        
+    }
+    
+    /**
      * @return numberOfCopies
      */
     public int getNumberOfCopies()
     {
         return numberOfCopies;
+    }
+    
+    /**
+     * Handle decrementing number of copies of a book
+     * 
+     * @param newNumOfCopies 
+     */
+    public void decrementNumberOfCopies(int newNumOfCopies)
+    {
+        this.numberOfCopies -= newNumOfCopies;        
     }
 }

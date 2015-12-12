@@ -36,9 +36,7 @@ public class Library
         String bookName = book.getBookName();
      
         if (bookCollection.putIfAbsent(bookName, book) != null) {
-            int newNumberOfCopies = getAvailableCopiesOfBook(bookName) + 
-                                        book.getNumberOfCopies();
-            bookCollection.get(bookName).setNumberOfCopies(newNumberOfCopies);
+            bookCollection.get(bookName).incrementNumberOfCopies(book.getNumberOfCopies());
         }
     }
     
@@ -62,13 +60,18 @@ public class Library
     public void removeBook(Book book)
     {
         String bookName = book.getBookName();
+        Book tmp = bookCollection.get(bookName);
         int availableCopiesOfBook = getAvailableCopiesOfBook(bookName);
         
         if (availableCopiesOfBook > 0) {
             int newNumberOfCopies = availableCopiesOfBook - book.getNumberOfCopies();
             
             if (newNumberOfCopies >= 0) {
-                bookCollection.get(bookName).setNumberOfCopies(newNumberOfCopies);
+                tmp.decrementNumberOfCopies(book.getNumberOfCopies());
+            } else {
+                while (tmp.getNumberOfCopies() > 0) {
+                    tmp.decrementNumberOfCopies(1);
+                }
             }
         }
     }
